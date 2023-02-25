@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.app.blog.exceptions.ResourceNotFoundException;
 import com.app.blog.payloads.ApiResponse;
 import com.app.blog.payloads.PostDTO;
 import com.app.blog.services.PostService;
@@ -50,8 +49,11 @@ public class PostController {
 	
 	//	get all posts
 	@RequestMapping("/posts")
-	public ResponseEntity<List<PostDTO>> getAllPosts(){
-		List<PostDTO> postDTOs = this.postService.getAllPosts();
+	public ResponseEntity<List<PostDTO>> getAllPosts(
+			@RequestParam(value = "pageNumber", defaultValue = "0", required =  false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize
+			){
+		List<PostDTO> postDTOs = this.postService.getAllPosts(pageNumber, pageSize);
 		return new ResponseEntity<List<PostDTO>>(postDTOs, HttpStatus.OK);
 	}
 	
@@ -73,6 +75,6 @@ public class PostController {
 	@PutMapping("/posts/{postId}")
 	public ResponseEntity<PostDTO> updatePost(@RequestBody PostDTO postDto, @PathVariable Integer postId){
 		PostDTO updatePost = this.postService.updatePost(postDto, postId);
-		return new ResponseEntity<PostDTO>(updatePost, HttpStatus.OK);
+		return new ResponseEntity<PostDTO>(updatePost, HttpStatus.OK); 
 	}
 }
