@@ -72,6 +72,7 @@ public class PostController {
 		return new ApiResponse("Post is successfully deleted!", true);
 	}
 	
+	
 	//	update post
 	@PutMapping("/posts/{postId}")
 	public ResponseEntity<PostDTO> updatePost(@RequestBody PostDTO postDto, @PathVariable Integer postId){
