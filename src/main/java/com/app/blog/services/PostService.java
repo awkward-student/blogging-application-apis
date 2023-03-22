@@ -2,7 +2,7 @@ package com.app.blog.services;
 
 import java.util.List;
 
-import com.app.blog.entities.Post;
+//import com.app.blog.entities.Post;
 import com.app.blog.payloads.PostDTO;
 import com.app.blog.payloads.PostResponse;
 
@@ -22,5 +22,5 @@ public interface PostService {
 	//get all posts by user
 	List<PostDTO> getPostsByUser(Integer userId);
 	//search posts
-	List<Post> searchPosts(String keyword);
+	List<PostDTO> searchPosts(String keyword);
 }

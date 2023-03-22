@@ -11,4 +11,7 @@ import com.app.blog.entities.User;
 public interface PostRepo extends JpaRepository<Post, Integer>{
 	List<Post> findByUser(User user);
 	List<Post> findByCategory(Category category);
+	
+//	searching - manual methods
+	List<Post> findByTitleContaining(String title);
 }
